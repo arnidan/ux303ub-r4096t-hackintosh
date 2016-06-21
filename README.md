@@ -12,3 +12,11 @@
 * External graphics card
 * FN Keys
 * ...
+
+### What works:
+* ASL
+* Backlit Keyboard
+* Touchpad and gestures (SmartTouchPad)
+* Audio (VoodooHDA)
+* Intel HD Graphics 520
+* WIFI, Bluetooth
