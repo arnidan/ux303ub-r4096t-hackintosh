@@ -8,12 +8,12 @@
 * RAM: **Internal 4GB, Kingston 8GB**
 
 ### Currently not working:
-* Sleep
 * External graphics card
-* FN Keys
+* FN Keys (Screen brightness)
 * ...
 
 ### What works:
+* Sleep
 * ASL
 * Backlit Keyboard
 * Touchpad and gestures (SmartTouchPad)
