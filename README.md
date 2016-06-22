@@ -9,7 +9,6 @@
 
 ### Currently not working:
 * External graphics card
-* FN Keys (Screen brightness)
 * ...
 
 ### What works:
@@ -20,3 +19,4 @@
 * Audio (AppleHDA patch)
 * Intel HD Graphics 520
 * WIFI, Bluetooth
+* FN Keys

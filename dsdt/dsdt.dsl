@@ -37420,141 +37420,18 @@ Else
 
         Method (_Q0E, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (LLess (MSOS (), OSW8))
-            {
-                SBRN ()
-            }
+            
+            // Brightness Down
+            Notify (PS2K, 0x20)
 
-            If (LGreaterEqual (MSOS (), OSVT))
-            {
-                Store (LBTN, Local0)
-                If (^^^GFX0.PRST ())
-                {
-                    If (LNotEqual (^^^GFX0.LCDD._DCS (), 0x1F))
-                    {
-                        Return (Zero)
-                    }
-
-                    ^^^GFX0.DWBL ()
-                    Store (One, ASBN)
-                }
-
-                If (^^^RP01.PEGP.PRST ())
-                {
-                    If (LNot (ASBN))
-                    {
-                        If (LNotEqual (^^^RP01.PEGP.LCDD._DCS, 0x1F))
-                        {
-                            Return (Zero)
-                        }
-
-                        ^^^RP01.PEGP.DWBL ()
-                        Store (One, ASBN)
-                    }
-                }
-
-                Store (Zero, ASBN)
-                If (ATKP)
-                {
-                    If (LGreaterEqual (MSOS (), OSW8)) {}
-                    Else
-                    {
-                        If (LGreater (Local0, Zero))
-                        {
-                            Decrement (Local0)
-                        }
-
-                        If (LGreater (Local0, 0x0A))
-                        {
-                            Store (0x0A, Local0)
-                        }
-
-                        Store (Local0, LBTN)
-                        ^^^^ATKD.IANE (Add (Local0, 0x20))
-                    }
-                }
-            }
-            Else
-            {
-                If (LGreater (LBTN, Zero))
-                {
-                    Decrement (LBTN)
-                }
-
-                If (LGreater (LBTN, 0x0A))
-                {
-                    Store (0x0A, LBTN)
-                }
-
-                STBR ()
-                If (ATKP)
-                {
-                    ^^^^ATKD.IANE (Add (LBTN, 0x20))
-                }
-            }
-
-            Return (Zero)
         }
 
         Method (_Q0F, 0, NotSerialized)  // _Qxx: EC Query
         {
-            If (LLess (MSOS (), OSW8))
-            {
-                SBRN ()
-            }
+            
+            // Brightness Up
+            Notify (PS2K, 0x10)
 
-            If (LGreaterEqual (MSOS (), OSVT))
-            {
-                Store (LBTN, Local0)
-                If (^^^GFX0.PRST ())
-                {
-                    If (LNotEqual (^^^GFX0.LCDD._DCS (), 0x1F))
-                    {
-                        Return (Zero)
-                    }
-
-                    ^^^GFX0.UPBL ()
-                    Store (One, ASBN)
-                }
-
-                If (^^^RP01.PEGP.PRST ())
-                {
-                    If (LNot (ASBN))
-                    {
-                        If (LNotEqual (^^^RP01.PEGP.LCDD._DCS, 0x1F))
-                        {
-                            Return (Zero)
-                        }
-
-                        ^^^RP01.PEGP.UPBL ()
-                        Store (One, ASBN)
-                    }
-                }
-
-                Store (Zero, ASBN)
-                If (ATKP)
-                {
-                    If (LGreaterEqual (MSOS (), OSW8)) {}
-                    ElseIf (LLess (Local0, 0x0A))
-                    {
-                        Increment (Local0)
-                    }
-                    Else
-                    {
-                        Store (0x0A, Local0)
-                    }
-                }
-            }
-            ElseIf (LLess (LBTN, 0x0A))
-            {
-                Increment (LBTN)
-            }
-            Else
-            {
-                Store (0x0A, LBTN)
-            }
-
-            Return (Zero)
         }
 
         Method (_Q10, 0, NotSerialized)  // _Qxx: EC Query
