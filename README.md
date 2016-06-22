@@ -17,6 +17,6 @@
 * ASL
 * Backlit Keyboard
 * Touchpad and gestures (SmartTouchPad)
-* Audio (VoodooHDA)
+* Audio (AppleHDA patch)
 * Intel HD Graphics 520
 * WIFI, Bluetooth
