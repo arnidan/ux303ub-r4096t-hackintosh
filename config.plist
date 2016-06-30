@@ -43,6 +43,8 @@
 			<false/>
 			<key>Generate</key>
 			<false/>
+			<key>PluginType</key>
+			<integer>1</integer>
 		</dict>
 	</dict>
 	<key>Boot</key>
@@ -59,6 +61,8 @@
 		<string>PBR</string>
 		<key>Secure</key>
 		<false/>
+		<key>NeverHibernate</key>
+		<true/>
 		<key>Timeout</key>
 		<integer>5</integer>
 		<key>XMPDetection</key>
@@ -79,7 +83,7 @@
 		<key>USB</key>
 		<dict>
 			<key>AddClockID</key>
-			<true/>
+			<false/>
 			<key>FixOwnership</key>
 			<true/>
 			<key>Inject</key>
