@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT1, Mon Jun  6 12:44:12 2016
+ * Disassembly of SSDT-0.aml, Sun Sep 25 14:59:57 2016
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -20,9 +20,23 @@
  */
 DefinitionBlock ("", "SSDT", 1, "SataRe", "SataTabl", 0x00001000)
 {
+    /*
+     * External declarations were imported from
+     * a reference file -- refs.txt
+     */
+
+    External (_GPE.MMTB, MethodObj)    // Imported: 0 Arguments
+    External (_GPE.VHOV, MethodObj)    // Imported: 3 Arguments
+    External (_SB_.PCI0.GFX0.DD02._BCM, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECWT, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.PEG0.PEGP.SGPO, MethodObj)    // Imported: 2 Arguments
     External (_SB_.PCI0.SAT0, DeviceObj)
+    External (_SB_.PCI0.SAT0.SDSM, MethodObj)    // Imported: 4 Arguments
+    External (_SB_.PCI0.SAT1.SDSM, MethodObj)    // Imported: 4 Arguments
     External (DSSP, IntObj)
     External (FHPP, IntObj)
+    External (MDBG, MethodObj)    // Imported: 1 Arguments
 
     Scope (\)
     {

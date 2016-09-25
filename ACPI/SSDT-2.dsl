@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT3, Mon Jun  6 12:44:12 2016
+ * Disassembly of SSDT-2.aml, Sun Sep 25 14:59:57 2016
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -20,6 +20,13 @@
  */
 DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 {
+    /*
+     * External declarations were imported from
+     * a reference file -- refs.txt
+     */
+
+    External (_GPE.MMTB, MethodObj)    // Imported: 0 Arguments
+    External (_GPE.VHOV, MethodObj)    // Imported: 3 Arguments
     External (_PR_.AAC0, FieldUnitObj)
     External (_PR_.ACRT, FieldUnitObj)
     External (_PR_.APSV, FieldUnitObj)
@@ -28,11 +35,11 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
     External (_PR_.CLVL, FieldUnitObj)
     External (_PR_.CPPC, FieldUnitObj)
     External (_PR_.CPU0, ProcessorObj)
-    External (_PR_.CPU0._PSS, MethodObj)    // 0 Arguments
+    External (_PR_.CPU0._PSS, IntObj)    // Warning: Unknown object
     External (_PR_.CPU0._TPC, IntObj)    // Warning: Unknown object
     External (_PR_.CPU0._TSD, IntObj)    // Warning: Unknown object
     External (_PR_.CPU0._TSS, IntObj)    // Warning: Unknown object
-    External (_PR_.CPU0.LPSS, PkgObj)
+    External (_PR_.CPU0.LPSS, UnknownObj)    // Warning: Unknown object
     External (_PR_.CPU0.TPSS, UnknownObj)    // Warning: Unknown object
     External (_PR_.CPU0.TSMC, UnknownObj)    // Warning: Unknown object
     External (_PR_.CPU0.TSMF, UnknownObj)    // Warning: Unknown object
@@ -63,14 +70,20 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
     External (_SB_.PAGD._STA, MethodObj)    // 0 Arguments
     External (_SB_.PCI0, DeviceObj)
     External (_SB_.PCI0.B0D4, DeviceObj)
-    External (_SB_.PCI0.GFX0.LCDD._BCL, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.LCDD._BCM, MethodObj)    // 1 Arguments
-    External (_SB_.PCI0.GFX0.LCDD._BQC, MethodObj)    // 0 Arguments
-    External (_SB_.PCI0.GFX0.LCDD._DCS, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.DD02._BCM, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._BCL, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._BCM, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._BQC, MethodObj)    // 0 Arguments
+    External (_SB_.PCI0.IGPU.LCDD._DCS, MethodObj)    // 0 Arguments
     External (_SB_.PCI0.LPCB.EC0_, DeviceObj)
     External (_SB_.PCI0.LPCB.EC0_.RP2E, MethodObj)    // 1 Arguments
     External (_SB_.PCI0.LPCB.EC0_.WP2E, MethodObj)    // 2 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECWT, MethodObj)    // Imported: 2 Arguments
     External (_SB_.PCI0.MHBR, FieldUnitObj)
+    External (_SB_.PCI0.PEG0.PEGP.SGPO, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.SAT0.SDSM, MethodObj)    // Imported: 4 Arguments
+    External (_SB_.PCI0.SAT1.SDSM, MethodObj)    // Imported: 4 Arguments
     External (_SB_.SCWT, FieldUnitObj)
     External (_SB_.TJMX, FieldUnitObj)
     External (_TZ_.THRM, UnknownObj)
@@ -96,6 +109,7 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
     External (LPOP, FieldUnitObj)
     External (LPOS, FieldUnitObj)
     External (LPOW, FieldUnitObj)
+    External (MDBG, MethodObj)    // Imported: 1 Arguments
     External (MEM3, FieldUnitObj)
     External (MEMC, FieldUnitObj)
     External (MEMD, FieldUnitObj)
@@ -1458,7 +1472,7 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
         {
             If (CondRefOf (\_PR.CPU0._PSS))
             {
-                Return (\_PR.CPU0._PSS ())
+                Return (\_PR.CPU0._PSS)
             }
             Else
             {
@@ -2527,9 +2541,9 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 
             Method (_BCL, 0, NotSerialized)  // _BCL: Brightness Control Levels
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._BCL))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._BCL))
                 {
-                    Return (\_SB.PCI0.GFX0.LCDD._BCL ())
+                    Return (\_SB.PCI0.IGPU.LCDD._BCL ())
                 }
                 Else
                 {
@@ -2542,17 +2556,17 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 
             Method (_BCM, 1, NotSerialized)  // _BCM: Brightness Control Method
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._BCM))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._BCM))
                 {
-                    \_SB.PCI0.GFX0.LCDD._BCM (Arg0)
+                    \_SB.PCI0.IGPU.LCDD._BCM (Arg0)
                 }
             }
 
             Method (_BQC, 0, NotSerialized)  // _BQC: Brightness Query Current
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._BQC))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._BQC))
                 {
-                    Return (\_SB.PCI0.GFX0.LCDD._BQC ())
+                    Return (\_SB.PCI0.IGPU.LCDD._BQC ())
                 }
                 Else
                 {
@@ -2562,9 +2576,9 @@ DefinitionBlock ("", "SSDT", 2, "DptfTa", "DptfTabl", 0x00001000)
 
             Method (_DCS, 0, NotSerialized)  // _DCS: Display Current Status
             {
-                If (CondRefOf (\_SB.PCI0.GFX0.LCDD._DCS))
+                If (CondRefOf (\_SB.PCI0.IGPU.LCDD._DCS))
                 {
-                    Return (\_SB.PCI0.GFX0.LCDD._DCS ())
+                    Return (\_SB.PCI0.IGPU.LCDD._DCS ())
                 }
                 Else
                 {

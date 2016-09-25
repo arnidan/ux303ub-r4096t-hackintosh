@@ -5,13 +5,13 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT5, Mon Jun  6 12:44:13 2016
+ * Disassembly of SSDT-4.aml, Sun Sep 25 14:59:57 2016
  *
  * Original Table Header:
  *     Signature        "SSDT"
  *     Length           0x00000E58 (3672)
  *     Revision         0x02
- *     Checksum         0x56
+ *     Checksum         0x00
  *     OEM ID           "CpuRef"
  *     OEM Table ID     "CpuSsdt"
  *     OEM Revision     0x00003000 (12288)
@@ -20,6 +20,13 @@
  */
 DefinitionBlock ("", "SSDT", 2, "CpuRef", "CpuSsdt", 0x00003000)
 {
+    /*
+     * External declarations were imported from
+     * a reference file -- refs.txt
+     */
+
+    External (_GPE.MMTB, MethodObj)    // Imported: 0 Arguments
+    External (_GPE.VHOV, MethodObj)    // Imported: 3 Arguments
     External (_PR_.CPU0, ProcessorObj)
     External (_PR_.CPU1, ProcessorObj)
     External (_PR_.CPU2, ProcessorObj)
@@ -29,6 +36,13 @@ DefinitionBlock ("", "SSDT", 2, "CpuRef", "CpuSsdt", 0x00003000)
     External (_PR_.CPU6, ProcessorObj)
     External (_PR_.CPU7, ProcessorObj)
     External (_SB_.OSCP, IntObj)
+    External (_SB_.PCI0.IGPU.DD02._BCM, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECWT, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.PEG0.PEGP.SGPO, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.SAT0.SDSM, MethodObj)    // Imported: 4 Arguments
+    External (_SB_.PCI0.SAT1.SDSM, MethodObj)    // Imported: 4 Arguments
+    External (MDBG, MethodObj)    // Imported: 1 Arguments
 
     Scope (\)
     {
@@ -70,7 +84,7 @@ DefinitionBlock ("", "SSDT", 2, "CpuRef", "CpuSsdt", 0x00003000)
     Scope (\_PR)
     {
         Name (CTPC, Zero)
-        OperationRegion (PNVS, SystemMemory, 0x72A81000, 0x006B)
+        OperationRegion (PNVS, SystemMemory, 0x71DF3000, 0x006B)
         Field (PNVS, AnyAcc, Lock, Preserve)
         {
             PGRV,   8, 

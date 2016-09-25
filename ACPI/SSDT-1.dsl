@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT2, Mon Jun  6 12:44:12 2016
+ * Disassembly of SSDT-1.aml, Sun Sep 25 14:59:57 2016
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -20,10 +20,24 @@
  */
 DefinitionBlock ("", "SSDT", 2, "INTEL ", "sensrhub", 0x00000000)
 {
+    /*
+     * External declarations were imported from
+     * a reference file -- refs.txt
+     */
+
+    External (_GPE.MMTB, MethodObj)    // Imported: 0 Arguments
+    External (_GPE.VHOV, MethodObj)    // Imported: 3 Arguments
     External (_SB_.GGOV, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.DD02._BCM, MethodObj)    // Imported: 1 Arguments
     External (_SB_.PCI0.I2C0.DFUD, UnknownObj)    // Warning: Unknown object
+    External (_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECWT, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.PEG0.PEGP.SGPO, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.SAT0.SDSM, MethodObj)    // Imported: 4 Arguments
+    External (_SB_.PCI0.SAT1.SDSM, MethodObj)    // Imported: 4 Arguments
     External (_SB_.SGOV, MethodObj)    // 2 Arguments
     External (BID_, FieldUnitObj)
+    External (MDBG, MethodObj)    // Imported: 1 Arguments
     External (SDS0, FieldUnitObj)
     External (USBH, FieldUnitObj)
 
@@ -83,7 +97,6 @@ DefinitionBlock ("", "SSDT", 2, "INTEL ", "sensrhub", 0x00000000)
                                 {
                                     Sleep (PGCD)
                                     \_SB.GGOV (0x02010016)
-                                    OLDV
                                 }
 
                                 If (LEqual (\_SB.GGOV (0x02010016), One))
@@ -104,12 +117,11 @@ DefinitionBlock ("", "SSDT", 2, "INTEL ", "sensrhub", 0x00000000)
                                 Store (DerefOf (Index (Arg3, One)), DFUD)
                                 Store (\_SB.GGOV (0x02010014), OLDV)
                                 \_SB.GGOV (0x02010014)
-                                DFUE
+                              
                                 If (LGreater (DFUD, Zero))
                                 {
                                     Sleep (DFUD)
                                     \_SB.GGOV (0x02010014)
-                                    OLDV
                                 }
 
                                 Return (Zero)

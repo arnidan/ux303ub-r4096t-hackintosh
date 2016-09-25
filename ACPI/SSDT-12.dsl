@@ -5,7 +5,7 @@
  * 
  * Disassembling to non-symbolic legacy ASL operators
  *
- * Disassembly of SSDT6, Mon Jun  6 12:44:13 2016
+ * Disassembly of SSDT-12.aml, Sun Sep 25 14:59:57 2016
  *
  * Original Table Header:
  *     Signature        "SSDT"
@@ -20,14 +20,27 @@
  */
 DefinitionBlock ("", "SSDT", 2, "SgRef", "SgPch", 0x00001000)
 {
+    /*
+     * External declarations were imported from
+     * a reference file -- refs.txt
+     */
+
+    External (_GPE.MMTB, MethodObj)    // Imported: 0 Arguments
+    External (_GPE.VHOV, MethodObj)    // Imported: 3 Arguments
     External (_SB_.GGOV, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.IGPU.DD02._BCM, MethodObj)    // Imported: 1 Arguments
     External (_SB_.PCI0.LPCB.EC0_.RRAM, MethodObj)    // 1 Arguments
     External (_SB_.PCI0.LPCB.EC0_.WRAM, MethodObj)    // 2 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECRD, MethodObj)    // Imported: 1 Arguments
+    External (_SB_.PCI0.LPCB.H_EC.ECWT, MethodObj)    // Imported: 2 Arguments
+    External (_SB_.PCI0.PEG0.PEGP.SGPO, MethodObj)    // Imported: 2 Arguments
     External (_SB_.PCI0.RP01, DeviceObj)
     External (_SB_.PCI0.RP01._ADR, IntObj)
     External (_SB_.PCI0.RP01.PEGP.GC6I, MethodObj)    // 0 Arguments
     External (_SB_.PCI0.RP01.PEGP.GC6O, MethodObj)    // 0 Arguments
     External (_SB_.PCI0.RP01.PEGP.NHDA, FieldUnitObj)
+    External (_SB_.PCI0.SAT0.SDSM, MethodObj)    // Imported: 4 Arguments
+    External (_SB_.PCI0.SAT1.SDSM, MethodObj)    // Imported: 4 Arguments
     External (_SB_.SGOV, MethodObj)    // 2 Arguments
     External (DLHR, FieldUnitObj)
     External (DLPW, FieldUnitObj)
@@ -38,6 +51,7 @@ DefinitionBlock ("", "SSDT", 2, "SgRef", "SgPch", 0x00001000)
     External (HRE0, FieldUnitObj)
     External (HRG0, FieldUnitObj)
     External (HYSS, FieldUnitObj)
+    External (MDBG, MethodObj)    // Imported: 1 Arguments
     External (OSYS, FieldUnitObj)
     External (PWA0, FieldUnitObj)
     External (PWE0, FieldUnitObj)
@@ -227,6 +241,9 @@ DefinitionBlock ("", "SSDT", 2, "SgRef", "SgPch", 0x00001000)
         Method (_INI, 0, NotSerialized)  // _INI: Initialize
         {
             Store (Zero, \_SB.PCI0.RP01.PEGP._ADR)
+            //added to turn nvidia/radeon off
+            External(\_SB.PCI0.RP01.PEGP._OFF, MethodObj)
+            _OFF()
         }
 
         Method (HGON, 0, Serialized)
