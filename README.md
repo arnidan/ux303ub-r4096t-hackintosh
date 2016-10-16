@@ -6,6 +6,7 @@
 * SSD: **Samsung 850 EVO 250GB**
 * WIFI: **Broadcom BCM4352**
 * RAM: **Internal 4GB, Kingston 8GB**
+* Sound: **CCX20751**
 
 ### Currently not working:
 * External graphics card
@@ -16,7 +17,7 @@
 * ASL
 * Backlit Keyboard
 * Touchpad and gestures (SmartTouchPad)
-* Audio (AppleHDA patch)
+* Audio (AppleALC, Layout 3) 
 * Intel HD Graphics 520
 * WIFI, Bluetooth
 * FN Keys

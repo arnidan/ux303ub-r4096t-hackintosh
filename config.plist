@@ -12,12 +12,6 @@
 			<false/>
 			<key>Fixes</key>
 			<dict>
-				<key>AddDTGP_0001</key>
-				<true/>
-				<key>FIX_RTC_20000</key>
-				<true/>
-				<key>FixHDA_8000</key>
-				<true/>
 				<key>FixHPET_0010</key>
 				<true/>
 				<key>FixRegions_10000000</key>
@@ -27,6 +21,25 @@
 				<key>NewWay_80000000</key>
 				<true/>
 			</dict>
+			<key>Name</key>
+			<string>DSDT.aml</string>
+			<key>Patches</key>
+			<array>
+				<dict>
+					<key>Comment</key>
+					<string>Rename HDAS to HDEF</string>
+					<key>Disabled</key>
+					<false/>
+					<key>Find</key>
+					<data>
+					SERBUw==
+					</data>
+					<key>Replace</key>
+					<data>
+					SERFRg==
+					</data>
+				</dict>
+			</array>
 			<key>ReuseFFFF</key>
 			<false/>
 		</dict>
@@ -40,7 +53,7 @@
 		<key>SSDT</key>
 		<dict>
 			<key>DropOem</key>
-			<false/>
+			<true/>
 			<key>Generate</key>
 			<false/>
 			<key>PluginType</key>
@@ -59,14 +72,14 @@
 		<string>LastBootedVolume</string>
 		<key>Legacy</key>
 		<string>PBR</string>
-		<key>Secure</key>
-		<false/>
 		<key>NeverHibernate</key>
 		<true/>
+		<key>Secure</key>
+		<false/>
 		<key>Timeout</key>
 		<integer>5</integer>
 		<key>XMPDetection</key>
-		<true/>
+		<integer>1</integer>
 	</dict>
 	<key>CPU</key>
 	<dict>
@@ -78,12 +91,10 @@
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
-			<string>28</string>
+			<string>3</string>
 		</dict>
 		<key>USB</key>
 		<dict>
-			<key>AddClockID</key>
-			<false/>
 			<key>FixOwnership</key>
 			<true/>
 			<key>Inject</key>
@@ -136,10 +147,33 @@
 		<true/>
 		<key>Debug</key>
 		<false/>
+		<key>KernelCpu</key>
+		<false/>
+		<key>KernelHaswellE</key>
+		<false/>
 		<key>KernelLapic</key>
 		<true/>
 		<key>KernelPm</key>
 		<true/>
+		<key>KextsToPatch</key>
+		<array>
+			<dict>
+				<key>Comment</key>
+				<string>Boot graphics glitch, 10.10.x/10.11.x (credit lisai9093, cecekpawon)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				AQAAdRc=
+				</data>
+				<key>Name</key>
+				<string>IOGraphicsFamily</string>
+				<key>Replace</key>
+				<data>
+				AQAA6xc=
+				</data>
+			</dict>
+		</array>
 	</dict>
 	<key>RtVariables</key>
 	<dict>
@@ -155,17 +189,15 @@
 	<key>SMBIOS</key>
 	<dict>
 		<key>BiosReleaseDate</key>
-		<string>21/03/12</string>
+		<string>10/29/13</string>
 		<key>BiosVendor</key>
 		<string>Apple Inc.</string>
 		<key>BiosVersion</key>
-		<string>MBP91.88Z.00D3.B00.1203211536</string>
+		<string>MBP111.88Z.0138.B03.1310291227</string>
 		<key>Board-ID</key>
-		<string>Mac-6F01561E16C75D06</string>
+		<string>Mac-189A3D4F975D5FFC</string>
 		<key>BoardManufacturer</key>
 		<string>Apple Inc.</string>
-		<key>BoardSerialNumber</key>
-		<string>C02KX348DTY3W4T35</string>
 		<key>BoardType</key>
 		<integer>10</integer>
 		<key>ChassisAssetTag</key>
@@ -181,11 +213,9 @@
 		<key>Mobile</key>
 		<true/>
 		<key>ProductName</key>
-		<string>MacBookPro9,2</string>
+		<string>MacBookPro11,1</string>
 		<key>SerialNumber</key>
-		<string>C02KX348DTY3</string>
-		<key>SmUUID</key>
-		<string>4C28197C-5B6E-53FE-981C-CC33966E2ACA</string>
+		<string>C02L34Q7FGYY</string>
 		<key>Trust</key>
 		<true/>
 		<key>Version</key>
